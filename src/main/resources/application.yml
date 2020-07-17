@@ -11,6 +11,10 @@ spring:
     username: root
     password: dbsl3761
 
+covid:
+  api:
+    url: http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?_type=json&ServiceKey=
+    serviceKey: UD1mSPQFRwq1xRkO8PMZFOCQWpKXiS09uxGA1pR7BI/nJj7/QcboB69jzxNpcVJkhilS3RdyOWtiA7yqAz1G4Q==
 
 server:
   port: 7000
