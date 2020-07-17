@@ -17,4 +17,12 @@ public class Header {
     public String getResultMsg(){
         return this.resultMsg;
     }
+
+    @Override
+    public String toString() {
+        return "Header{" +
+                "resultCode='" + resultCode + '\'' +
+                ", resultMsg='" + resultMsg + '\'' +
+                '}';
+    }
 }

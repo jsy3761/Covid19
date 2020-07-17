@@ -35,4 +35,14 @@ public class Body {
     public Integer getTotalCount(){
         return this.totalCount;
     }
+
+    @Override
+    public String toString() {
+        return "Body{" +
+                "items=" + items +
+                ", numOfRows=" + numOfRows +
+                ", pageNo=" + pageNo +
+                ", totalCount=" + totalCount +
+                '}';
+    }
 }

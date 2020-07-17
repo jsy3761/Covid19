@@ -20,4 +20,12 @@ public class Response {
     public Body getBody(){
         return this.body;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "header=" + header +
+                ", body=" + body +
+                '}';
+    }
 }

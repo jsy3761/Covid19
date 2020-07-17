@@ -121,4 +121,25 @@ public class Item {
     public String getUpdateDt(){
         return this.updateDt;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "createDt='" + createDt + '\'' +
+                ", deathCnt=" + deathCnt +
+                ", defCnt=" + defCnt +
+                ", gubun='" + gubun + '\'' +
+                ", gubunCn='" + gubunCn + '\'' +
+                ", gubunEn='" + gubunEn + '\'' +
+                ", incDec=" + incDec +
+                ", isolClearCnt=" + isolClearCnt +
+                ", isolIngCnt=" + isolIngCnt +
+                ", localOccCnt=" + localOccCnt +
+                ", overFlowCnt=" + overFlowCnt +
+                ", qurRate='" + qurRate + '\'' +
+                ", seq=" + seq +
+                ", stdDay='" + stdDay + '\'' +
+                ", updateDt='" + updateDt + '\'' +
+                '}';
+    }
 }

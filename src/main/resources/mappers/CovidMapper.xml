@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ntels.syjeon.covid19.dao.CovidMapper">
+
+    <insert id="insert" parameterType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
+        INSERT INTO covidinfo (
+        createDt,
+        deathCnt,
+        defCnt,
+        gubun,
+        gubunCn,
+        gubunEn,
+        incDec,
+        isolClearCnt,
+        isolIngCnt,
+        localOccCnt,
+        overFlowCnt,
+        qurRate,
+        seq,
+        stdDay,
+        updateDt) VALUES (
+        #{createDt},
+        #{deathCnt},
+        #{defCnt},
+        #{gubun},
+        #{gubunCn},
+        #{gubunEn},
+        #{incDec},
+        #{isolClearCnt},
+        #{isolIngCnt},
+        #{localOccCnt},
+        #{overFlowCnt},
+        #{qurRate},
+        #{seq},
+        #{stdDay},
+        #{updateDt})
+    </insert>
+
+    <select id="getTodayItems" parameterType="String" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
+        SELECT * FROM covidinfo
+        WHERE stdDay = #{stdDay}
+    </select>
+
+
+
+</mapper>

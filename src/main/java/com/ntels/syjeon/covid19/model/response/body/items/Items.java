@@ -13,4 +13,11 @@ public class Items {
     public List<Item> getItem(){
         return this.item;
     }
+
+    @Override
+    public String toString() {
+        return "Items{" +
+                "item=" + item +
+                '}';
+    }
 }
