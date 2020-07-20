@@ -23,4 +23,12 @@ public interface CovidMapper {
      * @return
      */
     List<Item> getTodayItems(String stdDay);
+
+    /**
+     * 금일 데이터가 없고 API 미갱신 시 최신 데이터의 List
+     * @return
+     */
+    List<Item> getRecentItems();
+
+    String[] getNames();
 }

@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * CovidServiceImpl
@@ -44,22 +45,41 @@ public class CovidServiceImpl implements CovidService {
     @Autowired
     private CovidMapper covidMapper;
 
-    @Override
-    public List<Item> getItemList(String startDate, String endDate) {
-        List<Item> items = covidMapper.getTodayItems(stringUtil.stdDay());
-        logger.debug("Params startDate: {} endDate: {} DbItemsSize: {}",startDate,endDate,items.size());
 
-        if (items.size() < 1) {
-            Gson gson = new Gson();
-            items = gson.fromJson(httpUtil.apiCall(), Covid19.class).getResponse().getBody().getItems().getItem();
-            items.forEach(item -> covidMapper.insert(item));
+    @Override
+    public boolean getApiList() {
+        boolean result = false;
+        List<Item> itemList = covidMapper.getTodayItems(stringUtil.stdDay());
+
+        if (itemList.size() < 1) {
+            try {
+                Gson gson = new Gson();
+                itemList = gson.fromJson(httpUtil.apiCall(), Covid19.class).getResponse().getBody().getItems().getItem();
+                itemList.forEach(item -> covidMapper.insert(item));
+                result = true;
+                logger.debug("금일 데이터 갱신");
+            } catch (Exception e) {
+                logger.debug("금일 데이터가 없음");
+            }
         }
-        return items;
+
+        return result;
     }
 
     @Override
-    public Item getItem(String gubun, String startDate, String endDate) {
-        return null;
+    public Item getItem(String gubun) {
+        List<Item> items = covidMapper.getRecentItems();
+        logger.debug("사이즈: {}",items.size());
+
+        Item item = items.stream().filter(i -> i.getGubun().equals(gubun))
+                .collect(Collectors.toList()).get(0);
+
+        logger.debug("구분: {}",item);
+        return item;
     }
 
+    @Override
+    public String[] getNames() {
+        return covidMapper.getNames();
+    }
 }

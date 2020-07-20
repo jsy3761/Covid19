@@ -44,6 +44,18 @@
         WHERE stdDay = #{stdDay}
     </select>
 
+    <select id="getRecentItems" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
+        SELECT * FROM covidinfo
+        ORDER BY id DESC
+        LIMIT 19
+    </select>
+
+    <select id="getNames" resultType="String">
+        SELECT gubun FROM covidinfo
+        ORDER BY id DESC
+        LIMIT 19
+    </select>
+
 
 
 </mapper>
