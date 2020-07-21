@@ -134,10 +134,10 @@ pageEncoding="UTF-8"%>
                             <td class="s"></td>
                             <td>
                               <span class="label">
-                                <h2>조회 기간</h2>
+                                <h2>금일 신규 발생</h2>
                               </span>
                               <div class="value">
-                                <h2> 분기</h2>
+                                <h2> ${item.incDec} </h2>
                               </div>
                             </td>
                             <form action="view" id="gigan">
@@ -158,10 +158,10 @@ pageEncoding="UTF-8"%>
                             <td class="s"></td>
                             <td class="s">
                               <span class="label">
-                                <h2>세대 수</h2>
+                                <h2>사망자 수</h2>
                               </span>
                               <div class="value">
-                                <h2>${item.defCnt}</h2>
+                                <h2>${item.deathCnt}</h2>
                               </div>
                               <span class="unit"></span>
                             </td>
@@ -170,7 +170,7 @@ pageEncoding="UTF-8"%>
                     <tr>
                       <th>
                         <span>
-                          <h2>인구수</h2>
+                          <h2>상세 현황</h2>
                         </span>
                       </th>
                       <td>
@@ -179,13 +179,13 @@ pageEncoding="UTF-8"%>
                             <thead>
                               <tr>
                                 <th scope="col" class="tac">
-                                  <h2>남 여 총합</h2>
+                                  <h2>시도명(한글)</h2>
                                 </th>
                                 <th scope="col" class="tac">
-                                  <h2>남자</h2>
+                                  <h2>시도명(중국)</h2>
                                 </th>
                                 <th scope="col" class="tac">
-                                  <h2>여자</h2>
+                                  <h2>시도명(영어)</h2>
                                 </th>
                               </tr>
                             </thead>
@@ -196,13 +196,13 @@ pageEncoding="UTF-8"%>
                             <tbody>
                               <tr>
                                 <td class="tac">
-                                  <h2> ${item.deathCnt} 명</h2>
+                                  <h2> ${item.gubun} </h2>
                                 </td>
                                 <td class="tac">
-                                  <h2> ${item.defCnt} 명</h2>
+                                  <h2> ${item.gubunCn} </h2>
                                 </td>
                                 <td class="tac">
-                                  <h2> ${item.gubunCn}</h2>
+                                  <h2> ${item.gubunEn}</h2>
                                 </td>
                               </tr>
                             </tbody>
@@ -215,13 +215,13 @@ pageEncoding="UTF-8"%>
                             <thead>
                               <tr>
                                 <th scope="col" class="tac">
-                                  <h2>한국인 남 여 총합</h2>
+                                  <h2>격리 해제 수</h2>
                                 </th>
                                 <th scope="col" class="tac">
-                                  <h2>한국인 남자</h2>
+                                  <h2>10만명 당 발생률</h2>
                                 </th>
                                 <th scope="col" class="tac">
-                                  <h2>한국인 여자</h2>
+                                  <h2>기준일시</h2>
                                 </th>
                               </tr>
                             </thead>
@@ -232,84 +232,21 @@ pageEncoding="UTF-8"%>
                             <tbody>
                               <tr>
                                 <td class="tac">
-                                  <h2> ${item.defCnt}명</h2>
-                                </td>
-                                <td class="tac">
-                                  <h2> ${item.createDt}</h2>
-                                </td>
-                                <td class="tac">
-                                  <h2> ${item.incDec}명</h2>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="thead">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th scope="col" class="tac">
-                                  <h2>등록외국인 남 여 총합</h2>
-                                </th>
-                                <th scope="col" class="tac">
-                                  <h2>등록외국인 남자</h2>
-                                </th>
-                                <th scope="col" class="tac">
-                                  <h2>등록외국인 여자</h2>
-                                </th>
-                              </tr>
-                            </thead>
-                          </table>
-                        </div>
-                        <div class="tbody">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td class="tac">
-                                  <h2>${item.isolClearCnt}명</h2>
-                                </td>
-                                <td class="tac">
-                                  <h2> ${item.isolIngCnt}명</h2>
-                                </td>
-                                <td class="tac">
-                                  <h2> ${item.localOccCnt}명</h2>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="thead">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th scope="col" class="tac">
-                                  <h2>세대당 인구</h2>
-                                </th>
-                                <th scope="col" class="tac">
-                                  <h2>65세 이상 고령자</h2>
-                                </th>
-                              </tr>
-                            </thead>
-                          </table>
-                        </div>
-                        <div class="tbody">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td class="tac">
-                                  <h2> ${item.overFlowCnt}명</h2>
+                                  <h2> ${item.isolClearCnt}</h2>
                                 </td>
                                 <td class="tac">
                                   <h2> ${item.qurRate}</h2>
                                 </td>
+                                <td class="tac">
+                                  <h2> ${item.stdDay}</h2>
+                                </td>
                               </tr>
                             </tbody>
                           </table>
                         </div>
+                        <br />
+                        <br />
+                        
                       </td>
                     </tr>
                   </tbody>
