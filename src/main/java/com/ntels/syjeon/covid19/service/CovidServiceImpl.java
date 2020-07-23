@@ -67,6 +67,21 @@ public class CovidServiceImpl implements CovidService {
     }
 
     @Override
+    public boolean isIncrese(String gubun) {
+        boolean result = false;
+        if (getApiList()){
+            List<Item> todayList = covidMapper.getTodayItems(stringUtil.stdDay());
+            List<Item> yesterList = covidMapper.getTodayItems(stringUtil.yesterDay());
+            int today = todayList.stream().filter(l -> l.getGubun().equals(gubun)).collect(Collectors.toList()).get(0).getIncDec();
+            int yesterday = yesterList.stream().filter(l -> l.getGubun().equals(gubun)).collect(Collectors.toList()).get(0).getIncDec();
+            if (today > yesterday){
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    @Override
     public Item getItem(String gubun) {
         List<Item> items = covidMapper.getRecentItems();
         logger.debug("사이즈: {}",items.size());

@@ -22,4 +22,11 @@ public class StringUtil {
         return stdday;
     }
 
+    public String yesterDay(){
+        String yesterday = new SimpleDateFormat("yyyy년 MM월 dd일 ").format(
+                new Date(new Date().getTime()+(1000*60*60*24*-1))) + "00시";
+
+        return yesterday;
+    }
+
 }
