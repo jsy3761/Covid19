@@ -61,7 +61,7 @@
         FROM covidinfo
         WHERE gubun = #{gubun}
         ORDER BY stdDay DESC
-        LIMIT 5;
+        LIMIT 6;
     </select>
 
 

@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 
         for (var i = 0; i < result.length; i++) {
           $('#liList').append(
-            '<li>' +
+            '<li id ="'+result[i]+'">' +
             '<a class="nav-link" href="../' + result[i] + '">' +
             '<i class="material-icons">place</i>' +
             '<p><h4 style="color:#ffffff;">' + result[i] + '</h4></p>' +
@@ -71,11 +71,13 @@ pageEncoding="UTF-8"%>
       url: "/history.ajax",
       data: { gubun: param },
       success: function (result) {
-  
         $('#showHistory').empty();
+
         for (var i = 0; i < result.length; i++) {
           var temp = result[i].stdDay;
-          var date = temp.substr(0, temp.length - 3);
+          var date = temp.substr(0, temp.length - 3);   
+          var num = result[i].incDec - result[i+1].incDec;
+          var selector = '#increse'+i;
 
           $('#showHistory').append(
             '<tr>' +
@@ -85,9 +87,14 @@ pageEncoding="UTF-8"%>
             '<td><h3 style="color:#ffffff;">' + result[i].deathCnt + '</h3></td>' +
             '<td><h3 style="color:#ffffff;">' + result[i].isolIngCnt + '</h3></td>' +
             '<td><h3 style="color:#ffffff;">' + result[i].isolClearCnt + '</h3></td>' +
-            '<td><h3 style="color:#ffffff;">' + result[i] + '</h3></td>' +
+            '<td><h3 style="color:#ffffff;" id="increse'+i+'">' + num + '</h3></td>' +
             '</tr>'
-          )
+          )   
+          if(num > 0){
+            $(selector).css('color','blue');
+          }else{
+            $(selector).css('color','red');
+          }
         }
       }
     })
