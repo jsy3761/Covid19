@@ -1,20 +1,3 @@
-/*!
-
- =========================================================
- * Material Dashboard Dark Edition - v2.1.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-dashboard-dark
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
-
- * Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
 (function() {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
@@ -179,10 +162,11 @@ md = {
     if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization    ==========---------- */
 
+
       dataDailySalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+        labels: ['7월 11일','7월 12일','7월 13일','7월 14일','7월 15일'],
         series: [
-          [12, 17, 7, 17, 23, 18, 38]
+          [12, 17, 7, 17, 23]
         ]
       };
 
@@ -273,23 +257,33 @@ md = {
     }
   },
 
-  showNotification: function(from, align) {
+  showNotification: function(from, align, value) {
     type = ['', 'info', 'danger', 'success', 'warning', 'primary'];
 
     color = Math.floor((Math.random() * 5) + 1);
+    var msg;
+    if(value){
+      msg='최신 데이터로 갱신 합니다!';
+      setTimeout(function(){
+        location.reload();
+      },4000);
+    }else{
+      msg='현재 최신 데이터 입니다.';
+    }
 
     $.notify({
       icon: "add_alert",
-      message: "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer."
+      message: msg
 
     }, {
       type: type[color],
-      timer: 3000,
+      timer: 1000,
       placement: {
         from: from,
         align: align
       }
     });
+   
   },
 
   checkScrollForTransparentNavbar: debounce(function() {

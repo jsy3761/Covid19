@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
   $(document).ready(function () {
     getLists();
     getHistory();
+    md.initDashboardPageCharts();
   });
 
   function getLists() {
@@ -51,18 +52,17 @@ pageEncoding="UTF-8"%>
     })
   }
   function ref(){
+    var msg;
         $.ajax({
-        type: "GET",
-        url: "/refrash",
-        success: function (result) {
-         if(result){
-           alert("데이터 갱신!")
-           location.reload(true)
-         }else{
-           alert("현재 최신 데이터입니다.")
-         }
+          type: "GET",
+          async: false,
+          url: "/refrash",
+          success: function (result) {
+           msg = result;
         }
-        })}
+      })
+    return msg;
+  }
 
   function getHistory() {
     var param = $('#gubun').val();
@@ -71,6 +71,7 @@ pageEncoding="UTF-8"%>
       url: "/history.ajax",
       data: { gubun: param },
       success: function (result) {
+  
         $('#showHistory').empty();
         for (var i = 0; i < result.length; i++) {
           var temp = result[i].stdDay;
@@ -123,7 +124,7 @@ pageEncoding="UTF-8"%>
               </div>
             </div>
             <div class="col-xl-4 col-lg-12">
-              <button onclick="ref()" class="btn btn-primary btn-round">
+              <button onclick="md.showNotification('top','center',ref())" class="btn btn-primary btn-round">
                 <h4>데이터 갱신하기</h4>
               </button>
             </div>
@@ -276,7 +277,7 @@ pageEncoding="UTF-8"%>
                   <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Daily Sales</h4>
+                  <h3 class="card-title">확진자 수 추이</h3>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
                   </p>
@@ -617,13 +618,6 @@ pageEncoding="UTF-8"%>
 
         });
       });
-    });
-  </script>
-  <script>
-    $(document).ready(function () {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
     });
   </script>
 </body>

@@ -2,7 +2,10 @@ package com.ntels.syjeon.covid19.controller;
 
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.service.CovidService;
+import com.ntels.syjeon.covid19.service.CovidServiceImpl;
 import com.ntels.syjeon.covid19.util.HttpUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,7 @@ import java.util.List;
 @Controller
 public class CovidController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CovidController.class);
     /**
      * Covid Service
      */
@@ -47,6 +51,7 @@ public class CovidController {
     @GetMapping(value = "/refrash")
     @ResponseBody
     public boolean refrash(){
+        logger.debug("리프레쉬 실행 !!!!");
         return covidService.getApiList();
     }
 
