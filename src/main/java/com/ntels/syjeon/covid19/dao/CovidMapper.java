@@ -30,6 +30,8 @@ public interface CovidMapper {
      */
     List<Item> getRecentItems();
 
+    List<Item> getHistory(String gubun);
+
     String[] getNames();
 
 

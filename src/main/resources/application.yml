@@ -17,4 +17,4 @@ covid:
     serviceKey: UD1mSPQFRwq1xRkO8PMZFOCQWpKXiS09uxGA1pR7BI/nJj7/QcboB69jzxNpcVJkhilS3RdyOWtiA7yqAz1G4Q==
 
 server:
-  port: 7001
+  port: 7000

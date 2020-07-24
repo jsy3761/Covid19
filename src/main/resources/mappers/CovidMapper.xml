@@ -56,6 +56,14 @@
         LIMIT 19
     </select>
 
+    <select id="getHistory" parameterType="String" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
+        SELECT *
+        FROM covidinfo
+        WHERE gubun = #{gubun}
+        ORDER BY stdDay DESC
+        LIMIT 5;
+    </select>
+
 
 
 </mapper>

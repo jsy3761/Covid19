@@ -82,6 +82,11 @@ public class CovidServiceImpl implements CovidService {
     }
 
     @Override
+    public List<Item> getHistory(String gubun) {
+        return covidMapper.getHistory(gubun);
+    }
+
+    @Override
     public Item getItem(String gubun) {
         List<Item> items = covidMapper.getRecentItems();
         logger.debug("사이즈: {}",items.size());
