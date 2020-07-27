@@ -19,8 +19,11 @@ import java.util.List;
  */
 @Controller
 public class CovidController {
-
+    /**
+     * Logger
+     */
     private static final Logger logger = LoggerFactory.getLogger(CovidController.class);
+
     /**
      * Covid Service
      */
@@ -37,33 +40,36 @@ public class CovidController {
     }
 
     /**
+     * Ajax
      * 시 / 도 리스트 반환컨트롤러
      * @return
      */
-    @GetMapping(value = "/names.ajax")
     @ResponseBody
+    @GetMapping(value = "/names.ajax")
     public String[] getNameList(){
         return covidService.getNames();
     }
 
     /**
+     * Ajax
      * 시 / 도 History 반환 컨트롤러
      * @param gubun
      * @return List<Item>
      */
-    @GetMapping(value = "/history.ajax")
     @ResponseBody
+    @GetMapping(value = "/history.ajax")
     public List<Item> getNameList(String gubun){
         return covidService.getHistory(gubun);
     }
 
     /**
+     * Ajax
      * Data Refresh 처리 컨트롤러
      * @return boolean
      */
-    @GetMapping(value = "/refresh.ajax")
     @ResponseBody
-    public boolean refrash(){
+    @GetMapping(value = "/refresh.ajax")
+    public boolean refresh(){
         return covidService.getApiList();
     }
 
