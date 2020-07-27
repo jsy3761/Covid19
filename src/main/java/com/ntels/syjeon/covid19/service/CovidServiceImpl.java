@@ -3,6 +3,7 @@ package com.ntels.syjeon.covid19.service;
 import com.google.gson.Gson;
 import com.ntels.syjeon.covid19.dao.CovidMapper;
 import com.ntels.syjeon.covid19.model.Covid19;
+import com.ntels.syjeon.covid19.model.NameList;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.util.StringUtil;
 import com.ntels.syjeon.covid19.util.HttpUtil;
@@ -16,7 +17,6 @@ import java.util.stream.Collectors;
 
 /**
  * CovidServiceImpl
- *
  * @author syjeon@ntels.com
  */
 @Service
@@ -45,10 +45,10 @@ public class CovidServiceImpl implements CovidService {
     @Autowired
     private CovidMapper covidMapper;
 
-
     @Override
     public boolean getApiList() {
         boolean result = false;
+
         List<Item> itemList = covidMapper.getTodayItems(stringUtil.stdDay());
 
         if (itemList.size() < 1) {
@@ -62,23 +62,13 @@ public class CovidServiceImpl implements CovidService {
                 logger.debug("금일 데이터가 없음");
             }
         }
-
         return result;
     }
 
     @Override
-    public boolean isIncrese(String gubun) {
-        boolean result = false;
-        if (getApiList()){
-            List<Item> todayList = covidMapper.getTodayItems(stringUtil.stdDay());
-            List<Item> yesterList = covidMapper.getTodayItems(stringUtil.yesterDay());
-            int today = todayList.stream().filter(l -> l.getGubun().equals(gubun)).collect(Collectors.toList()).get(0).getIncDec();
-            int yesterday = yesterList.stream().filter(l -> l.getGubun().equals(gubun)).collect(Collectors.toList()).get(0).getIncDec();
-            if (today > yesterday){
-                result = true;
-            }
-        }
-        return result;
+    public Item getItem(String gubun) {
+        Item item = covidMapper.getItem(gubun);
+        return item;
     }
 
     @Override
@@ -87,19 +77,7 @@ public class CovidServiceImpl implements CovidService {
     }
 
     @Override
-    public Item getItem(String gubun) {
-        List<Item> items = covidMapper.getRecentItems();
-        logger.debug("사이즈: {}",items.size());
-
-        Item item = items.stream().filter(i -> i.getGubun().equals(gubun))
-                .collect(Collectors.toList()).get(0);
-
-        logger.debug("구분: {}",item);
-        return item;
-    }
-
-    @Override
     public String[] getNames() {
-        return covidMapper.getNames();
+        return new NameList().getNames();
     }
 }

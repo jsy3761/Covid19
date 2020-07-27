@@ -25,9 +25,6 @@ import java.util.List;
 @Component
 public class HttpUtil {
 
-    @Autowired
-    CovidMapper covidMapper;
-
     /**
      * Logger
      */
@@ -50,7 +47,6 @@ public class HttpUtil {
      * @return full JsonString
      */
     public String apiCall() {
-
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);

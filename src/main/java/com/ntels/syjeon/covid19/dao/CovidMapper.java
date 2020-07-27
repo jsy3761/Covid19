@@ -25,14 +25,17 @@ public interface CovidMapper {
     List<Item> getTodayItems(String stdDay);
 
     /**
-     * 금일 데이터가 없고 API 미갱신 시 최신 데이터의 List
+     * 단일 데이터 조회
+     * @return
+     * @param gubun
+     */
+    Item getItem(String gubun);
+
+    /**
+     * 시 / 도 이름을 입력하여 최근 6개의 정보를 리턴
+     * @param gubun
      * @return
      */
-    List<Item> getRecentItems();
-
     List<Item> getHistory(String gubun);
-
-    String[] getNames();
-
 
 }

@@ -9,20 +9,30 @@ import java.util.List;
  */
 public interface CovidService {
 
-
+    /**
+     * 오늘날짜를 생성하여 DB 조회후 데이터가 존재 하지 않으면 
+     * API콜하여 Insert 후 True 리턴
+     * @return boolean
+     */
     boolean getApiList();
 
-    boolean isIncrese(String gubun);
-
-    List<Item> getHistory(String gubun);
-
     /**
-     * 정의된 기간내의 데이터를 조회하여 시/도 이름에 해당하는 단일 Item을 반환
+     * DB에서 최신 단일 데이터 조회
      * @param gubun 시/도 이름
-
      * @return Item
      */
     Item getItem(String gubun);
 
+    /**
+     * 해당지역의 최근 6일간의 Data를 DB 조회하여 리턴
+     * @param gubun
+     * @return Item List
+     */
+    List<Item> getHistory(String gubun);
+
+    /**
+     * 모든 시/도의 이름의 배열을 반환
+     * @return
+     */
     String[] getNames();
 }

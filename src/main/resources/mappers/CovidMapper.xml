@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.ntels.syjeon.covid19.dao.CovidMapper">
 
     <insert id="insert" parameterType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
@@ -44,16 +43,11 @@
         WHERE stdDay = #{stdDay}
     </select>
 
-    <select id="getRecentItems" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
+    <select id="getItem" parameterType="String" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
         SELECT * FROM covidinfo
-        ORDER BY id DESC
-        LIMIT 19
-    </select>
-
-    <select id="getNames" resultType="String">
-        SELECT gubun FROM covidinfo
-        ORDER BY id DESC
-        LIMIT 19
+        WHERE gubun = #{gubun}
+        ORDER BY stdDay DESC
+        LIMIT 1
     </select>
 
     <select id="getHistory" parameterType="String" resultType="com.ntels.syjeon.covid19.model.response.body.items.item.Item">
@@ -63,7 +57,5 @@
         ORDER BY stdDay DESC
         LIMIT 6;
     </select>
-
-
 
 </mapper>

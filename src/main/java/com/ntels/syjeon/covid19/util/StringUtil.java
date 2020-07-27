@@ -17,16 +17,9 @@ public class StringUtil {
      * @return ex) "YYYY년 MM월 dd일 00시"
      */
     public String stdDay(){
-        String stdday = new SimpleDateFormat("yyyy년 MM월 dd일 ").format(new Date()) + "00시";
+        String stdDay = new SimpleDateFormat("yyyy년 MM월 dd일 ").format(new Date()) + "00시";
 
-        return stdday;
-    }
-
-    public String yesterDay(){
-        String yesterday = new SimpleDateFormat("yyyy년 MM월 dd일 ").format(
-                new Date(new Date().getTime()+(1000*60*60*24*-1))) + "00시";
-
-        return yesterday;
+        return stdDay;
     }
 
 }

@@ -2,8 +2,6 @@ package com.ntels.syjeon.covid19.controller;
 
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.service.CovidService;
-import com.ntels.syjeon.covid19.service.CovidServiceImpl;
-import com.ntels.syjeon.covid19.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import java.util.List;
 
 /**
  * Covid Controller
- *
  * @author syjeon@ntels.com
  */
 @Controller
@@ -30,10 +27,9 @@ public class CovidController {
     @Autowired
     private CovidService covidService;
 
-
     @GetMapping(value = "/")
     public String  index() {
-        return "dashboard";
+        return "covid";
     }
 
     @GetMapping(value = "/names.ajax")
@@ -48,16 +44,15 @@ public class CovidController {
         return covidService.getHistory(gubun);
     }
 
-    @GetMapping(value = "/refrash")
+    @GetMapping(value = "/refresh.ajax")
     @ResponseBody
     public boolean refrash(){
-        logger.debug("리프레쉬 실행 !!!!");
         return covidService.getApiList();
     }
 
     @GetMapping(value = "/{gubun}")
     public ModelAndView view(@PathVariable(value = "gubun") String gubun) {
-        ModelAndView mv = new ModelAndView("dashboard");
+        ModelAndView mv = new ModelAndView("covid");
         mv.addObject("item", covidService.getItem(gubun));
 
         return mv;
