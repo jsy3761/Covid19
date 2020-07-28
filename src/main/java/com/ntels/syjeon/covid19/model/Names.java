@@ -24,5 +24,4 @@ public class Names {
         return new Gson().toJson(this);
     }
 
-
 }

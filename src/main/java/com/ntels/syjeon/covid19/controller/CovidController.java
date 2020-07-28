@@ -1,7 +1,5 @@
 package com.ntels.syjeon.covid19.controller;
 
-import com.ntels.syjeon.covid19.model.Name;
-import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.service.CovidService;
 import org.slf4j.Logger;
