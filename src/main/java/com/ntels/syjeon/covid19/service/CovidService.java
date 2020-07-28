@@ -1,8 +1,9 @@
 package com.ntels.syjeon.covid19.service;
 
+import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
-
 import java.util.List;
+
 /**
  * Covid Service
  * @author syjeon@ntels.com
@@ -34,5 +35,5 @@ public interface CovidService {
      * 모든 시/도의 이름의 배열을 반환
      * @return
      */
-    String[] getNames();
+    Names getNames();
 }

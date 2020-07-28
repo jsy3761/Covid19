@@ -3,8 +3,8 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+ 
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -32,25 +32,33 @@ pageEncoding="UTF-8"%>
   });
 
   function getLists() {
+    var url = location.href.split('/')[3];
+    var decode = decodeURI(url)
+    var id;
     $.ajax({
       type: "GET",
       url: "/names.ajax",
       success: function (result) {
+        const obj = JSON.parse(result).names;
+        
         $('#liList').empty();
-
-        for (var i = 0; i < result.length; i++) {
+        for (var i = 0; i < obj.length; i++) {
           $('#liList').append(
-            '<li id ="'+result[i]+'">' +
-            '<a class="nav-link" href="../' + result[i] + '">' +
+            '<li id ="'+obj[i].name+'">' +
+            '<a class="nav-link" href="../' + obj[i].name + '">' +
             '<i class="material-icons">place</i>' +
-            '<p><h4 style="color:#ffffff;">' + result[i] + '</h4></p>' +
+            '<p><h4 style="color:#ffffff;">' + obj[i].name + '</h4></p>' +
             '</a>' +
             '</li>')
+            if(decode == obj[i].name){
+              id = obj[i].name;
+            }
         }
+        $('#'+id).attr('class','active');
       }
     })
   }
-  function ref(){
+  function refresh(){
     var msg;
         $.ajax({
           type: "GET",
@@ -71,13 +79,12 @@ pageEncoding="UTF-8"%>
       data: { gubun: param },
       success: function (result) {
         $('#showHistory').empty();
-
+        md.initDashboardPageCharts(result);   
         for (var i = 0; i < result.length; i++) {
           var temp = result[i].stdDay;
           var date = temp.substr(0, temp.length - 3);   
           var num = result[i].incDec - result[i+1].incDec;
           var selector = '#increse'+i;
-
           $('#showHistory').append(
             '<tr>' +
             '<td><h3 style="color:#ffffff;">' + date + '</h3></td>' +
@@ -86,9 +93,9 @@ pageEncoding="UTF-8"%>
             '<td><h3 style="color:#ffffff;">' + result[i].deathCnt + '</h3></td>' +
             '<td><h3 style="color:#ffffff;">' + result[i].isolIngCnt + '</h3></td>' +
             '<td><h3 style="color:#ffffff;">' + result[i].isolClearCnt + '</h3></td>' +
-            '<td><h2 style="color:#ffffff;" id="increse'+i+'">' + num + '</h2></td>' +
+            '<td><h2 id="increse'+i+'">' + num + '</h2></td>' +
             '</tr>'
-          )   
+          )
           if(num > 0){
             $(selector).css('color','#df3030');
           }else{
@@ -131,7 +138,7 @@ pageEncoding="UTF-8"%>
               </div>
             </div>
             <div class="col-xl-4 col-lg-12">
-              <button onclick="md.showNotification('top','center',ref())" class="btn btn-primary btn-round">
+              <button onclick="md.showNotification('top','center',refresh())" class="btn btn-primary btn-round">
                 <h4>데이터 갱신하기</h4>
               </button>
             </div>
@@ -278,36 +285,30 @@ pageEncoding="UTF-8"%>
 
             <div class="col-xl-6 col-lg-12">
               <div class="card card-chart">
-                <div class="card-header card-header-success">
+                <div class="card-header card-header-danger">
                   <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
                 <div class="card-body">
-                  <h3 class="card-title">확진자 수 추이</h3>
+                  <h3 class="card-title">확진자 추이</h3>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
                   </p>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
                 </div>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-12">
               <div class="card card-chart">
-                <div class="card-header card-header-danger">
+                <div class="card-header card-header-success">
                   <div class="ct-chart" id="completedTasksChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Completed Tasks</h4>
+                  <h3 class="card-title">전일 대비 증감</h3>
                   <p class="card-category">Last Campaign Performance</p>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                  </div>
                 </div>
               </div>
             </div>

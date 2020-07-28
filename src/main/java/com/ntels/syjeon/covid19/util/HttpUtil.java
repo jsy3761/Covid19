@@ -1,12 +1,7 @@
 package com.ntels.syjeon.covid19.util;
 
-import com.google.gson.Gson;
-import com.ntels.syjeon.covid19.dao.CovidMapper;
-import com.ntels.syjeon.covid19.model.Covid19;
-import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 
 /**
  * Http Util

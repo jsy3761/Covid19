@@ -157,25 +157,32 @@ md = {
     }
   },
 
-  initDashboardPageCharts: function() {
+  initDashboardPageCharts: function(result) {
 
     if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization    ==========---------- */
-
-
+      
+      var date = new Array();
+      for (var i = 0; i < result.length ; i++) {
+        date[i] = result[i].stdDay.substr(5,8);
+      }
+      
+      
+      
       dataDailySalesChart = {
-        labels: ['7월 11일','7월 12일','7월 13일','7월 14일','7월 15일'],
+        labels: [date[4],date[3],date[2],date[1],date[0]],
         series: [
-          [12, 17, 7, 17, 23]
+          [result[4].incDec, result[3].incDec, result[2].incDec, result[1].incDec, result[0].incDec]
         ]
       };
 
+      
       optionsDailySalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
         low: 0,
-        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 150, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: {
           top: 0,
           right: 0,
@@ -191,10 +198,12 @@ md = {
 
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
+      
+
       dataCompletedTasksChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
+        labels: [date[4],date[3],date[2],date[1],date[0]],
         series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
+          [-20, 80,-70,150,-50]
         ]
       };
 
@@ -202,8 +211,8 @@ md = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
-        low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        low: -100,
+        high: 100, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: {
           top: 0,
           right: 0,

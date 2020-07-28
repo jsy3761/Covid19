@@ -1,5 +1,7 @@
 package com.ntels.syjeon.covid19.controller;
 
+import com.ntels.syjeon.covid19.model.Name;
+import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.service.CovidService;
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import java.util.List;
  */
 @Controller
 public class CovidController {
+
     /**
      * Logger
      */
@@ -41,18 +44,18 @@ public class CovidController {
 
     /**
      * Ajax
-     * 시 / 도 리스트 반환컨트롤러
+     * 시 / 도 리스트 반환
      * @return
      */
     @ResponseBody
     @GetMapping(value = "/names.ajax")
-    public String[] getNameList(){
-        return covidService.getNames();
+    public String getNameList(){
+        return covidService.getNames().toJson();
     }
 
     /**
      * Ajax
-     * 시 / 도 History 반환 컨트롤러
+     * 시 / 도 History 반환
      * @param gubun
      * @return List<Item>
      */
@@ -64,7 +67,7 @@ public class CovidController {
 
     /**
      * Ajax
-     * Data Refresh 처리 컨트롤러
+     * Data Refresh 처리
      * @return boolean
      */
     @ResponseBody
@@ -74,7 +77,7 @@ public class CovidController {
     }
 
     /**
-     * 시 / 도 상세 현황 조회 컨트롤러
+     * 시 / 도 상세 현황 조회
      * @param gubun
      * @return View and Item
      */

@@ -3,7 +3,8 @@ package com.ntels.syjeon.covid19.service;
 import com.google.gson.Gson;
 import com.ntels.syjeon.covid19.dao.CovidMapper;
 import com.ntels.syjeon.covid19.model.Covid19;
-import com.ntels.syjeon.covid19.model.NameList;
+import com.ntels.syjeon.covid19.model.Name;
+import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import com.ntels.syjeon.covid19.util.StringUtil;
 import com.ntels.syjeon.covid19.util.HttpUtil;
@@ -74,7 +75,28 @@ public class CovidServiceImpl implements CovidService {
     }
 
     @Override
-    public String[] getNames() {
-        return new NameList().getNames();
+    public Names getNames() {
+        List<Name> names = new ArrayList<>();
+        names.add(new Name("합계"));
+        names.add(new Name("서울"));
+        names.add(new Name("부산"));
+        names.add(new Name("대구"));
+        names.add(new Name("인천"));
+        names.add(new Name("광주"));
+        names.add(new Name("대전"));
+        names.add(new Name("울산"));
+        names.add(new Name("세종"));
+        names.add(new Name("경기"));
+        names.add(new Name("강원"));
+        names.add(new Name("충북"));
+        names.add(new Name("충남"));
+        names.add(new Name("전북"));
+        names.add(new Name("전남"));
+        names.add(new Name("경북"));
+        names.add(new Name("경남"));
+        names.add(new Name("제주"));
+        names.add(new Name("검역"));
+
+        return new Names(names);
     }
 }
