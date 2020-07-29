@@ -1,6 +1,5 @@
-package com.ntels.syjeon.covid19.model;
+package com.ntels.syjeon.covid19.model.response;
 
-import com.ntels.syjeon.covid19.model.response.Response;
 /**
  * @author syjeon@ntels.com
  */

@@ -60,7 +60,7 @@ public class CovidController {
     @ResponseBody
     @GetMapping(value = "/history.ajax")
     public List<Item> getNameList(String gubun){
-        return covidService.getHistory(gubun);
+        return covidService.getHistory(gubun).getItemList();
     }
 
     /**

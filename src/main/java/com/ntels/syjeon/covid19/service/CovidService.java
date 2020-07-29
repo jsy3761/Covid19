@@ -1,5 +1,6 @@
 package com.ntels.syjeon.covid19.service;
 
+import com.ntels.syjeon.covid19.model.ItemList;
 import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
 import java.util.List;
@@ -29,7 +30,7 @@ public interface CovidService {
      * @param gubun
      * @return Item List
      */
-    List<Item> getHistory(String gubun);
+    ItemList getHistory(String gubun);
 
     /**
      * 모든 시/도의 이름의 배열을 반환

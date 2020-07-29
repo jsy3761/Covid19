@@ -2,7 +2,8 @@ package com.ntels.syjeon.covid19.service;
 
 import com.google.gson.Gson;
 import com.ntels.syjeon.covid19.dao.CovidMapper;
-import com.ntels.syjeon.covid19.model.Covid19;
+import com.ntels.syjeon.covid19.model.response.Covid19;
+import com.ntels.syjeon.covid19.model.ItemList;
 import com.ntels.syjeon.covid19.model.Name;
 import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
@@ -70,8 +71,9 @@ public class CovidServiceImpl implements CovidService {
     }
 
     @Override
-    public List<Item> getHistory(String gubun) {
-        return covidMapper.getHistory(gubun);
+    public ItemList getHistory(String gubun) {
+        List<Item> itemList = covidMapper.getHistory(gubun);
+        return new ItemList(itemList);
     }
 
     @Override

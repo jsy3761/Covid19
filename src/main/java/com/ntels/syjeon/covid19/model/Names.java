@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 시 / 도 이름 일급 컬렉션 객체 모델
  * @author syjeon@ntels.com
  */
 public class Names {
