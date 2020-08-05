@@ -3,7 +3,6 @@ package com.ntels.syjeon.covid19.service;
 import com.ntels.syjeon.covid19.model.ItemList;
 import com.ntels.syjeon.covid19.model.Names;
 import com.ntels.syjeon.covid19.model.response.body.items.item.Item;
-import java.util.List;
 
 /**
  * Covid Service
